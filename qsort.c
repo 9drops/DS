@@ -18,7 +18,8 @@ int median3(int array[], int left, int right)
 		swap(&array[left], &array[right]);
 	if (array[mid] > array[right])
 		swap(&array[mid], &array[right]);
-	return array[mid];
+	swap(&array[mid], &array[right - 1]); /*Hide pivot*/
+	return array[right - 1]; /*Return pivot*/
 }
 
 
@@ -41,7 +42,7 @@ void qsort(int array[], int left, int right)
 		mid = left + (right - left) / 2;
 		pivot = median3(array, left, right);
 		i = left;
-		j = right;
+		j = right - 1;
 		
 		for (;;) {	
 			while (array[++i] < pivot);
@@ -52,6 +53,7 @@ void qsort(int array[], int left, int right)
 				break;
 		}
 		
+		swap(&array[i], &array[right - 1]);/*Restore pivot*/
 		qsort(array, left, i - 1);
 		qsort(array, i + 1, right);
 	} else
