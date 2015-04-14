@@ -41,20 +41,19 @@ void destroy_link(node_t *link)
 
 node_t *reverse_link(node_t *link)
 {
-	node_t *r, *prev, *cur, *next;
+	node_t *prev, *cur, *next;
 	if (NULL == link || NULL == link->next)
 		return link;
 
 	prev = link;
-	r = cur = link->next;
-	next = cur->next;
-
-	while (r){
+	cur = link->next;
+	
+	while (cur){
 		
-		next = r->next;
-		r->next = prev;
-		prev = r;
-		r = next;
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
 		
 	}
 	
