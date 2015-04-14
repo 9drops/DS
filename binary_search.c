@@ -3,16 +3,11 @@ int bsearch(int array[], int low, int high, int key)
 	int mid_index, mid;
 	mid_index = low + (high - low) / 2;
 	mid = array[mid_index];
-
-	if (key > mid) {
-		return bsearch(array, mid_index + 1, high, key);		
-	} else if (key < mid)
-		return bsearch(array, low, mid_index - 1, key);
-	  else if (key == mid) {
-		return mid_index;
-	}
-	  else if (low > high)
-		return -1;
+	
+	if (low > high) return -1;
+	if (key > mid) return bsearch(array, mid_index + 1, high, key);		
+	else if (key < mid) return bsearch(array, low, mid_index - 1, key);
+	else return mid_index;
 }
 
 
